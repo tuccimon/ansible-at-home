@@ -1,0 +1,21 @@
+- name: Raspberry Pi Updates
+  hosts: all
+  tasks:
+    - name: Update apt packages
+      become: true
+      apt: 
+        update_cache: yes
+
+    - name: Upgrade apt packages
+      become: true
+      apt: 
+        upgrade: dist
+
+    - name: Remove old packages
+      become: true
+      apt: 
+        autoremove: yes
+
+    - name: Update tzdata
+      become: true
+      command: dpkg-reconfigure --frontend noninteractive tzdata

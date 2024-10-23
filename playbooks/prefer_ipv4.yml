@@ -1,0 +1,11 @@
+---
+- name: prefer IPv4 over IPv6
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: change reg dword setting to 32
+    win_regedit:
+      path: HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters
+      name: DisabledComponents
+      data: 32
+      type: dword

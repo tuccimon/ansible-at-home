@@ -1,0 +1,6 @@
+- name: Raspberry Pi Test
+  hosts: all
+  tasks:
+    - name: Message Result
+      debug:
+        msg: "Ansible running in {{ansible_lsb.id}}!"

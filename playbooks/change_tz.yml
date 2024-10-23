@@ -1,0 +1,9 @@
+---
+- name: change timezone on windows machines to EST
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: change timezone to EST
+    win_timezone:
+      timezone: Eastern Standard Time
+    

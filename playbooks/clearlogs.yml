@@ -1,0 +1,14 @@
+---
+- name: query all event log names using Powershell and then clear using Ansible module to clear them
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: query all event log names using Powershell
+    win_shell: (Get-EventLog -List).Log
+    register: log_names
+
+  - name: clear event log using Ansible module to clear them
+    win_eventlog: 
+      name: "{{ item }}"
+      state: clear
+    with_items: "{{ log_names.stdout_lines }}"

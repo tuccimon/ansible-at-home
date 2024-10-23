@@ -1,0 +1,13 @@
+- name: change time to display list of OSes
+  # need to 5 sec
+
+- name: change time to display recovery options when needed
+  # need to 5 sec
+
+- name: change write debugging information to Kernel memory dump if RAM <= 8 GB
+  # change setting
+  when: ansible_memtotal_mb|int <= 8192
+
+- name: change write debugging information to Small memory dump if RAM > 8 GB
+# change setting
+  when: ansible_memtotal_mb|int > 8192

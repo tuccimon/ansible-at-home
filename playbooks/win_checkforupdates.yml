@@ -1,0 +1,17 @@
+---
+- name: Search-only, return list of updates found (if any)
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: perform update check
+    win_updates:
+      category_names:
+       - SecurityUpdates
+       - CriticalUpdates
+       - UpdateRollups
+      state: searched
+    register: updates_found
+
+  - name: display found updates
+    debug:
+      msg: "{{ updates_found }}"

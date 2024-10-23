@@ -1,0 +1,15 @@
+---
+- name: query page file information from all fixed drives
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: use powershell to get relevant driver letters into a variable
+    win_shell: (Get-Volume | where {$_.DriveLetter -and $_.DriveType -eq 'Fixed'}).DriveLetter
+    register: drive_letters
+
+  - name: now query drives based on captured letters
+    win_pagefile: 
+      drive: "{{ item }}"
+      system_managed: yes
+      state: present
+    with_items: "{{ drive_letters.stdout_lines }}"

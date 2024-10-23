@@ -1,0 +1,12 @@
+---
+- name: testing repeating loop
+  hosts: windows
+  gather_facts: no
+  vars:
+    amount: 10
+  tasks:
+  - name: display item
+    debug:
+      var: item
+    with_sequence: start=0 count={{amount}}
+    when: amount|int > 0

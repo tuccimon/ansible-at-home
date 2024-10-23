@@ -1,0 +1,6 @@
+- name: Windows Machine Test
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Windows ping
+      win_ping:
