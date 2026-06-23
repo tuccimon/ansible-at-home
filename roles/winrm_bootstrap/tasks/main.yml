@@ -1,0 +1,12 @@
+---
+- name: Run WinRM bootstrap script with parameters
+  ansible.builtin.script:
+    path: files/winrm_bootstrap.ps1
+    args:
+      - -Force
+      - -SkipNetworkProfileCheck
+
+- name: ensure WinRM starts when the system has settled and is ready to work reliably
+  ansible.windows.win_service:
+    name: winrm
+    start_mode: delayed
