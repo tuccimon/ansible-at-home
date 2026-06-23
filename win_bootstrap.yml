@@ -1,5 +1,6 @@
 ---
 - name: run winrm bootstrap script
+  hosts: windows_http
   tasks:
     - name: run bootstrap script
       ansible.builtin.import_role:
